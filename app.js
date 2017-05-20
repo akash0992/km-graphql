@@ -3,12 +3,14 @@ const bodyParser = require('body-parser');
 const { makeExecutableSchema } = require('graphql-tools');
 const { graphiqlExpress, graphqlExpress } = require('graphql-server-express');
 const PORT = process.env.PORT || 8888;
+const { typeDefs } = require('./typeDefs');
+const { resolvers } = require('./resolvers');
 
 const app = express();
 
 const schema = makeExecutableSchema({
-  // typeDefs,
-  // resolvers
+  typeDefs,
+  resolvers
 });
 
 app.use('/api', bodyParser.json(), graphqlExpress({ schema }));
